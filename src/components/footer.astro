@@ -1,0 +1,275 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  {
+    title: 'Event',
+    links: [
+      { name: 'Schedule', href: '/schedule/' },
+      { name: 'Speakers', href: '/speakers/' },
+      { name: 'Tech Labs', href: '/tech-labs/' },
+      { name: 'Register', href: '/register/' }
+    ]
+  },
+  {
+    title: 'Information',
+    links: [
+      { name: 'About', href: '/about/' },
+      { name: 'Venue', href: '/about/#venue' },
+      { name: 'FAQ', href: '/about/#faq' },
+      { name: 'Contact', href: '/about/#contact' }
+    ]
+  },
+  {
+    title: 'Resources',
+    links: [
+      { name: 'Sponsor Guide', href: '/sponsors/guide/' },
+      { name: 'Code of Conduct', href: '/code-of-conduct/' },
+      { name: 'Press Kit', href: '/press-kit/' },
+      { name: 'Past Events', href: '/past-events/' }
+    ]
+  }
+];
+
+const socialLinks = [
+  { name: 'Twitter', href: 'https://twitter.com/corecon', icon: 'twitter' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/company/corecon', icon: 'linkedin' },
+  { name: 'GitHub', href: 'https://github.com/corecon', icon: 'github' },
+  { name: 'YouTube', href: 'https://youtube.com/corecon', icon: 'youtube' }
+];
+
+// Social icons
+const socialIcons = {
+  twitter: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>`,
+  linkedin: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+  github: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
+  youtube: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>`
+};
+---
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="../public/core-con logo.png" alt="CoreCon Logo" />
+          <span>CoreCon</span>
+        </a>
+        <p class="footer-tagline">Where Core Engineers and Industry Leaders Connect</p>
+        
+      </div>
+      
+      <div class="footer-links">
+        {footerLinks.map(group => (
+          <div class="footer-group">
+            <h3 class="footer-title">{group.title}</h3>
+            <ul class="footer-menu">
+              {group.links.map(link => (
+                <li><a href={link.href}>{link.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; {currentYear} CoreCon. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-of-service/">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-background-dark);
+    color: white;
+  }
+
+  .footer-top {
+    padding: 4rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .footer-top .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .footer-logo img {
+    height: 2.5rem;
+    margin-right: 0.75rem;
+  }
+
+  .footer-tagline {
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+    max-width: 300px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .social-icon:hover {
+    background-color: var(--color-primary);
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .footer-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: white;
+  }
+
+  .footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-menu li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-menu a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-menu a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-newsletter p {
+    margin-bottom: 1.25rem;
+    opacity: 0.8;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .newsletter-form input {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    width: 100%;
+  }
+
+  .newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .newsletter-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .newsletter-form button {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 0;
+  }
+
+  .footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-legal a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+
+  .footer-legal a:hover {
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 992px) {
+    .footer-top .container {
+      grid-template-columns: 300px 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-top {
+      padding: 3rem 0;
+    }
+
+    .container {
+      padding: 0 1rem;
+    }
+
+    .footer-bottom .container {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+  }
+</style>
